@@ -1,8 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 
+const productRoute = require("./routes/Products");
+
 const Users = require("./models/Users");
-const Products = require("./models/Products");
 
 const app = express();
 app.use(express.json());
@@ -35,6 +36,8 @@ app.post("/users", async (req, res) => {
     console.log(error);
   }
 });
+
+app.use("/products", productRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`App is listening to port ${PORT}`));
