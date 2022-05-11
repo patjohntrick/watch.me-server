@@ -7,11 +7,10 @@ mongoose
     useNewUrlParser: true,
   })
   .then(() =>
-    console.log(`App is connected to the DB with products collections`)
+    console.log(`App is connected to the DB with products collection`)
   );
 
 const productsSchema = mongoose.Schema({
-  brand: String,
   name: String,
   image: String,
   price: Number,

@@ -14,6 +14,11 @@ const userSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    number: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     email: {
       type: String,
       required: true,
@@ -25,6 +30,8 @@ const userSchema = mongoose.Schema(
     },
     image: String,
     cart: Array,
+    createdAt: String,
+    updatedAt: String,
   },
   { timestamps: true }
 );

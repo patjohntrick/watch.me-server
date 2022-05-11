@@ -25,12 +25,23 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  const product = await Products.find(req.params.id);
+
+  try {
+    res.status(200).json(product);
+  } catch (error) {
+    console.error(error);
+  }
+});
+
 // POST
+// add product
 router.post("/", async (req, res) => {
   const newProduct = {
-    brand: req.body.brand,
     name: req.body.name,
     price: req.body.price,
+    image: req.body.image,
     description: req.body.description,
   };
   const product = await Products.create(newProduct);
@@ -41,6 +52,22 @@ router.post("/", async (req, res) => {
   } catch (error) {
     res.status(400);
     console.error(error);
+  }
+});
+
+
+// PUT
+// put description
+router.put("/:id", async (req, res) => {
+  const product = await Products.findByIdAndUpdate(req.params.id);
+  product.description = req.body.description;
+
+  try {
+    await product.save();
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(400);
+    console.log(error);
   }
 });
 
